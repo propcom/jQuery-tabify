@@ -41,20 +41,24 @@
 		}
 	};
 
-    $.fn.tabify = function() {
+    $.fn.tabify = function(options) {
         var $elem = this;
 
 		if ($elem.length > 1) {
-			$elem.each(function() {
+			$elem.each(function(options) {
 				$(this).tabify();
 			});
 
 			return;
 		}
 
+		options = $.extend({
+			'tab_container_class' => 'nav nav-tabs',
+			'tab_content_class' => 'tab-content',
+		}, options);
         var $tabs = $('<ul />');
 
-        $tabs.addClass('tabs');
+		$tabs.addClass(options.tab_container_class);
 
         $elem.find('.js-tab').not($elem.find('.js-tabs .js-tab')).each(function(i) {
             var $self = $(this);
@@ -99,6 +103,7 @@
 					parent.select();
 				}
 				$t.data('tab').select();
+				$t.addClass(options.tab_content_class);
 			}
 		});
     };
