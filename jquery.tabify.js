@@ -41,8 +41,8 @@
 		}
 	};
 
-    $.fn.tabify = function(options) {
-        var $elem = this;
+	$.fn.tabify = function(options) {
+		var $elem = this;
 
 		if ($elem.length > 1) {
 			$elem.each(function(options) {
@@ -55,35 +55,37 @@
 		options = $.extend({
 			'tab_container_class' => 'nav nav-tabs',
 			'tab_content_class' => 'tab-content',
+			'tab_parent' => $elem,
 		}, options);
-        var $tabs = $('<ul />');
+
+		var $tabs = $('<ul />');
 
 		$tabs.addClass(options.tab_container_class);
 
-        $elem.find('.js-tab').not($elem.find('.js-tabs .js-tab')).each(function(i) {
-            var $self = $(this);
-            var $title = $self.find('.js-title').eq(0);
+		$elem.find('.js-tab').not($elem.find('.js-tabs .js-tab')).each(function(i) {
+			var $self = $(this);
+			var $title = $self.find('.js-title').eq(0);
 
-            if (! $title.length) {
-                $title = $self.find(':header').eq(0);
-            }
+			if (! $title.length) {
+				$title = $self.find(':header').eq(0);
+			}
 
-            var $tab = $('<li />');
-            $tab.html($title.html());
-            $title.remove();
-            $tabs.append($tab);
+			var $tab = $('<li />');
+			$tab.html($title.html());
+			$title.remove();
+			$tabs.append($tab);
 
 			var tab = new Tab($tab, $self);
 			$tab.data('tab', tab);
 			$self.data('tab', tab);
 
-            if (i==0) {
+			if (i==0) {
 				$tab.addClass('selected');
 				$self.addClass('current');
-            };
-        });
+			};
+		});
 
-        $elem.prepend($tabs);
+		options.tab_parent.prepend($tabs);
 
 		$(function() {
 			var uri_tab = window.location.hash.substr(1);
@@ -106,5 +108,5 @@
 				$t.addClass(options.tab_content_class);
 			}
 		});
-    };
+	};
 })(jQuery);
