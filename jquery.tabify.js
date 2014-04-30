@@ -53,9 +53,9 @@
 		}
 
 		options = $.extend({
-			'tab_container_class' => 'nav nav-tabs',
-			'tab_content_class' => 'tab-content',
-			'tab_parent' => $elem,
+			'tab_container_class': 'nav nav-tabs',
+			'tab_content_class': 'tab-content',
+			'tab_parent': $elem,
 		}, options);
 
 		var $tabs = $('<ul />');
