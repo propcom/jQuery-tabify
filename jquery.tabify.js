@@ -52,7 +52,7 @@
 			return;
 		}
 
-		options = $.extend({
+		options = $.extend({}, {
 			'tab_container_class': 'nav nav-tabs',
 			'tab_content_class': 'tab-content',
 			'tab_parent': $elem,
